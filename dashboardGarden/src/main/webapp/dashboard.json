@@ -1,0 +1,299 @@
+{
+	"version": 1,
+	"allow_edit": false,
+	"plugins": [],
+	"panes": [
+		{
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 1
+			},
+			"col": {
+				"3": 3,
+				"4": 4
+			},
+			"col_width": "1",
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "date = new Date(datasources[\"Garden\"][\"updateTime\"]);\n\nreturn \"<h2 style=\\\"margin-left: 10px;\\\">Última leitura:</h2></br><h3><center>\" +  date.getDate() + \"/\" + date.getMonth() + \"/\" + date.getFullYear() + \" \" + date.getHours() + \":\" + date.getMinutes() + \":\" + date.getSeconds() + \"</center></h3>\";\n",
+						"height": 2
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "tempMenor=100;\n\nfor (i=0; i< 50; i++) {\n    dataTemp = datasources[\"Garden-All\"][i][\"content\"][\"temperature\"];\n    \n\tif ((tempMenor > dataTemp) && (dataTemp != \"nan\")) {\n\t\ttempMenor = dataTemp;\n        timeStamp = datasources[\"Garden-All\"][i][\"updateTime\"];\n    }\n}\n\ndate = new Date(timeStamp);\nreturn \"<h2 style=\\\"margin-left: 10px;\\\">Valores em função da MENOR temperatura registrada nas últimas 24 horas: </h2></br><h3><center>\" + date.getDate() + \"/\" + date.getMonth() + \"/\" + date.getFullYear() + \"\\t\" + date.getHours() + \":\" + date.getMinutes() + \":\" + date.getSeconds() + \"</center></h3>\";\n",
+						"height": 2
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "tempMaior=0;\n\nfor (i=0; i< 50; i++) {\n    dataTemp = datasources[\"Garden-All\"][i][\"content\"][\"temperature\"];\n    \n\tif ((tempMaior < dataTemp) && (dataTemp != \"nan\")) {\n        tempMaior = dataTemp;\n        timeStamp = datasources[\"Garden-All\"][i][\"updateTime\"];\n    }\n}\n\ndate = new Date(timeStamp);\nreturn \"<h2 style=\\\"margin-left: 10px;\\\">Valores em função da MAIOR temperatura registrada nas últimas 24 horas: </h2></br><h3><center>\" + date.getDate() + \"/\" + date.getMonth() + \"/\" + date.getFullYear() + \"\\t\" + date.getHours() + \":\" + date.getMinutes() + \":\" + date.getSeconds() + \"</center></h3>\";",
+						"height": 2
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 7,
+				"4": 7,
+				"5": 1
+			},
+			"col": {
+				"3": 3,
+				"4": -23,
+				"5": 4
+			},
+			"col_width": "1",
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "Temperatura",
+						"size": "big",
+						"value": "datasources[\"Garden\"][\"content\"][\"temperature\"]",
+						"sparkline": true,
+						"animate": true,
+						"units": "°C"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 7
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "Temperatura",
+						"size": "big",
+						"value": "tempMenor=100;\n\nfor (i=0; i< 50; i++) {\n    dataTemp = datasources[\"Garden-All\"][i][\"content\"][\"temperature\"];\n        \n\tif ((tempMenor > dataTemp) && (dataTemp != \"nan\")) {\n        tempMenor = dataTemp;\n    }\n}\n\nreturn tempMenor;",
+						"sparkline": true,
+						"animate": true,
+						"units": "°C"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 7
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "Temperatura",
+						"size": "big",
+						"value": "tempMaior=0;\n\nfor (i=0; i<50; i++) {\n    dataTemp = datasources[\"Garden-All\"][i][\"content\"][\"temperature\"];\n\tif ((tempMaior < dataTemp) && (dataTemp != \"nan\")) {\n\t\ttempMaior = dataTemp;\n    }\n}\n\nreturn tempMaior;",
+						"sparkline": true,
+						"animate": true,
+						"units": "°C"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 13,
+				"4": 13,
+				"5": 7
+			},
+			"col": {
+				"3": 3,
+				"4": -23,
+				"5": 1
+			},
+			"col_width": "1",
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Umidade",
+						"value": "datasources[\"Garden\"][\"content\"][\"humidity\"]",
+						"units": "%",
+						"min_value": 0,
+						"max_value": 100
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 13
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Umidade",
+						"value": "tempMenor=100;\n\nfor (i=0; i< 50; i++) {\n    dataTemp = datasources[\"Garden-All\"][i][\"content\"][\"temperature\"];\n        \n\tif ((tempMenor > dataTemp) && (dataTemp != \"nan\")) {\n\t\ttempMenor = dataTemp;\n\t\thumidity = datasources[\"Garden-All\"][i][\"content\"][\"humidity\"];\n    }\n}\n\nreturn humidity;",
+						"units": "%",
+						"min_value": 0,
+						"max_value": 100
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 13
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Umidade",
+						"value": "tempMaior=0;\n\nfor (i=0; i< 50; i++) {\n    dataTemp = datasources[\"Garden-All\"][i][\"content\"][\"temperature\"];\n        \n\tif ((tempMaior < dataTemp) && (dataTemp != \"nan\")) {\n\t\ttempMaior = dataTemp;\n\t\thumidity = datasources[\"Garden-All\"][i][\"content\"][\"humidity\"];\n    }\n}\n\nreturn humidity;",
+						"units": "%",
+						"min_value": 0,
+						"max_value": 100
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 21,
+				"4": 13,
+				"5": 7
+			},
+			"col": {
+				"3": 3,
+				"4": -23,
+				"5": 3
+			},
+			"col_width": "1",
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Umidade do Solo",
+						"value": "datasources[\"Garden\"][\"content\"][\"hygrometer_value\"]",
+						"min_value": 0,
+						"max_value": "1000"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 21
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Umidade do Solo",
+						"value": "tempMenor=100;\n\nfor (i=0; i< 50; i++) {\n    dataTemp = datasources[\"Garden-All\"][i][\"content\"][\"temperature\"];\n        \n\tif ((tempMenor > dataTemp) && (dataTemp != \"nan\")) {\n\t\ttempMenor = dataTemp;\n\t\thygrometer = datasources[\"Garden-All\"][i][\"content\"][\"hygrometer_value\"];\n    }\n}\n\nreturn hygrometer;",
+						"min_value": 0,
+						"max_value": "1000"
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 21
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Umidade do Solo",
+						"value": "tempMaior=0;\n\nfor (i=0; i< 50; i++) {\n    dataTemp = datasources[\"Garden-All\"][i][\"content\"][\"temperature\"];\n        \n\tif ((tempMaior < dataTemp) && (dataTemp != \"nan\")) {\n\t\ttempMaior = dataTemp;\n\t\thygrometer = datasources[\"Garden-All\"][i][\"content\"][\"hygrometer_value\"];\n    }\n}\n\nreturn hygrometer;",
+						"min_value": 0,
+						"max_value": "1000"
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "Garden",
+			"type": "JSON",
+			"settings": {
+				"url": "http://api.iot.ciandt.com/v2/data/18:fe:34:f3:74:2a/last",
+				"use_thingproxy": true,
+				"refresh": 900,
+				"method": "GET"
+			}
+		},
+		{
+			"name": "Garden-All",
+			"type": "JSON",
+			"settings": {
+				"url": "http://api.iot.ciandt.com/v2/data/18:fe:34:f3:74:2a",
+				"use_thingproxy": true,
+				"refresh": 900,
+				"method": "GET"
+			}
+		}
+	],
+	"columns": 3
+}
